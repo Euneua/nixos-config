@@ -45,6 +45,7 @@
     libnotify               # Send desktop notifications from the command line
     wev                     # Wayland event viewer (useful for finding key names)
     vim                     # Fallback editor
+    fastfetch               # a bit showoff
 
     # ── Screen Recording ─────────────────────────────────────────────────────
     obs-studio
