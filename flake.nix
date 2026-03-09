@@ -16,10 +16,6 @@
     # ── Hyprland ──────────────────────────────────────────────────────────────
     hyprland.url = "github:hyprwm/hyprland";
 
-    # ── NixVim ────────────────────────────────────────────────────────────────
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
     # ── Firefox Extensions ────────────────────────────────────────────────────
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";

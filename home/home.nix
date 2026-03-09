@@ -5,7 +5,6 @@
 { config, pkgs, inputs, ... }:
 {
   imports = [
-    inputs.nixvim.homeModules.nixvim  # NixVim Home Manager module
 
     # ── System ────────────────────────────────────────────────────────────────
     ./packages.nix   # User packages

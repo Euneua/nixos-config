@@ -1,0 +1,22 @@
+-- ── Syntax Highlighting ───────────────────────────────────────────────────────
+-- nvim-treesitter v2 – highlighting is enabled automatically, no setup needed
+
+-- ── Auto Brackets ─────────────────────────────────────────────────────────────
+require("nvim-autopairs").setup({})
+
+-- ── Comments ──────────────────────────────────────────────────────────────────
+require("Comment").setup({})
+
+-- ── Indent Guides ─────────────────────────────────────────────────────────────
+require("ibl").setup({})
+
+-- ── Vim Habit Enforcer ────────────────────────────────────────────────────────
+require("hardtime").setup({ enabled = true })
+
+-- ── Formatter ─────────────────────────────────────────────────────────────────
+require("conform").setup({
+  formatters_by_ft = {
+    nix    = { "nixfmt" },
+    python = { "black" },
+  },
+})
