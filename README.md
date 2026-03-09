@@ -54,6 +54,11 @@ My personal NixOS configuration – flake-based with Home Manager, Hyprland and 
 - **Rofi** – app launcher, window switcher, clipboard picker
 - **Yazi** – terminal file manager
 - **Firefox** – uBlock, Bitwarden, Vimium, Dark Reader, Brave Search
+- **Tuta Mail** – encrypted email client
+- **Signal** – encrypted messenger
+- **Vesktop** – Discord client with Vencord
+- **Steam** – gaming platform
+- **Threema** – encrypted messenger (via Flatpak)
 ## Hardware-specific files
 These files contain settings that are **specific to my machine** and must be adjusted for other hardware:
 - `hardware.nix` – NVIDIA Prime offload, PCI Bus IDs
