@@ -34,7 +34,12 @@
 
   programs.home-manager.enable = true;
 
-  # ── Cursor ──────────────────────────────────────────────────────────────────
+  # ── XDG ─────────────────────────────────────────────────────────────────────
+  # Add Flatpak directories to XDG_DATA_DIRS so Rofi can find Flatpak apps
+  home.sessionVariables.XDG_DATA_DIRS = 
+    "$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS";
+
+# ── Cursor ──────────────────────────────────────────────────────────────────
   # Sets the cursor system-wide for both Wayland and GTK applications
   home.pointerCursor = {
     gtk.enable = true;

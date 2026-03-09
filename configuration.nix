@@ -90,6 +90,18 @@
     pulse.enable      = true; # PulseAudio compatibility
   };
 
+  # ── Keyring ─────────────────────────────────────────────────────────────────
+  # Required for apps that use secret storage (e.g. Tutanota)
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprlock.enableGnomeKeyring = true;
+
+  # ── Flatpak ─────────────────────────────────────────────────────────────────
+  # Required for Threema and other apps not available in nixpkgs
+  services.flatpak.enable = true;
+
+  # ── Steam ───────────────────────────────────────────────────────────────────
+  programs.steam.enable = true;
+
   # ── User ────────────────────────────────────────────────────────────────────
   users.users.jannick = {
     isNormalUser = true;

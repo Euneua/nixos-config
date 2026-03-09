@@ -38,6 +38,11 @@
     # ── Development ──────────────────────────────────────────────────────────
     jetbrains-toolbox       # JetBrains IDE manager
 
+# ── Communication ────────────────────────────────────────────────────────
+    tutanota-desktop        # Encrypted email client
+    signal-desktop          # Encrypted messenger
+    vesktop                 # Discord client with Vencord (better client mods)
+
     # ── Utilities / Debugging ────────────────────────────────────────────────
     wlr-randr               # Wayland display configuration tool
     lshw                    # Hardware information
