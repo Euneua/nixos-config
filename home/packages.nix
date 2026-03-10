@@ -47,9 +47,19 @@
     wlr-randr               # Wayland display configuration tool
     libnotify               # Send desktop notifications from the command line
     fastfetch               # System info
+
+    # ── Viewer ───────────────────────────────────────────────────────────────
+    zathura                 # Minimal PDF viewer with Vim keybindings
+    imv                     # Minimal image viewer for Wayland
   ];
 
   # Waybar and VS Code stubs – full configuration lives in their respective modules
   programs.waybar.enable = true;
   programs.vscode.enable = true;
+
+  # direnv – activate Nix shells automatically when entering project directories
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 }

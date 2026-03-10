@@ -99,6 +99,10 @@
   # Required for Threema and other apps not available in nixpkgs
   services.flatpak.enable = true;
 
+  # ── nix-ld ──────────────────────────────────────────────────────────────────
+  # Allows running dynamically linked binaries not built for NixOS
+  programs.nix-ld.enable = true;
+ 
   # ── Steam ───────────────────────────────────────────────────────────────────
   programs.steam.enable = true;
 
