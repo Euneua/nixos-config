@@ -39,6 +39,7 @@
     jetbrains-toolbox       # JetBrains IDE manager
     cargo                   # Rust package manager
     rustc                   # Rust compiler
+    gcc                     # C linker (required by Rust)
 
     # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client

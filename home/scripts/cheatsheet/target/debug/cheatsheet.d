@@ -1,0 +1,1 @@
+/etc/nixos/home/scripts/cheatsheet/target/debug/cheatsheet: /etc/nixos/home/scripts/cheatsheet/src/main.rs /etc/nixos/home/scripts/cheatsheet/src/parser/hyprland.rs /etc/nixos/home/scripts/cheatsheet/src/parser/mod.rs /etc/nixos/home/scripts/cheatsheet/src/parser/neovim.rs /etc/nixos/home/scripts/cheatsheet/src/rofi.rs
