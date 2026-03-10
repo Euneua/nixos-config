@@ -9,7 +9,8 @@ let
 in
 {
   programs.yazi = {
-    enable = true;
+    enable           = true;
+    shellWrapperName = "y";  # Use 'y' to cd into last directory on exit
 
     settings = {
       # ── Manager ─────────────────────────────────────────────────────────────
