@@ -57,4 +57,11 @@
   yellow-rgb   = "249, 226, 175";
   sky-rgb      = "137, 220, 235";
   peach-rgb    = "250, 179, 135";
+
+  # ── Cheatsheet Prefix Colors ────────────────────────────────────────────────
+  # Colors for category prefixes [H], [N], [B] in the keybind cheatsheet
+  cheatsheet-hyprland = "cba6f7"; # mauve  – Hyprland [H]
+  cheatsheet-neovim   = "a6e3a1"; # green  – Neovim   [N]
+  cheatsheet-browser  = "89b4fa"; # blue   – Browser  [B]
+  cheatsheet-unknown  = "6c7086"; # overlay0 – fallback [?]
 }

@@ -193,6 +193,7 @@ in
         text-color       : inherit;
         font             : "JetBrainsMono Nerd Font 11";
         vertical-align   : 0.5;
+        markup           : true;
     }
   '';
 }
