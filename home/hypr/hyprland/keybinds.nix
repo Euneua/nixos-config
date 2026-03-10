@@ -18,9 +18,9 @@
       "$mod, E,      exec, ghostty -e yazi"
       "$mod, B,      exec, firefox"
       # ── Cheatsheet ───────────────────────────────────────────────────────────────
-      "$mod, F1,       exec, cheatsheet"
-      "$mod SHIFT, F1, exec, cheatsheet --category hyprland"
-      "$mod SHIFT, F2, exec, cheatsheet --category neovim"
+      "$mod, c,       exec, cheatsheet"
+      "$mod SHIFT, c, exec, cheatsheet --category hyprland"
+      "$mod SHIFT, c, exec, cheatsheet --category neovim"
 
       # ── Screenshot (grimblast) ───────────────────────────────────────────────
       ",      Print, exec, grimblast copy area"   # Select area
