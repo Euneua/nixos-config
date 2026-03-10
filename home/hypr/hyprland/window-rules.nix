@@ -32,6 +32,13 @@
         move          = "20 monitor_h-120";
         float         = true;
       }
+      {
+        # Center JetBrains Toolbox window
+        name          = "center-jetbrains-toolbox";
+        "match:class" = "jetbrains-toolbox";
+        float         = true;
+        center        = true;
+      }
     ];
   };
 }
