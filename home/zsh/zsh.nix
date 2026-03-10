@@ -47,6 +47,9 @@ in
 
     # ── Extra Config ──────────────────────────────────────────────────────────
     initContent = ''
+      # Must be set before syntax highlighting loads
+      ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
       # Accept autosuggestion with right arrow
       bindkey '^[[C' autosuggest-accept
     '';
