@@ -40,6 +40,7 @@
     cargo                   # Rust package manager
     rustc                   # Rust compiler
     gcc                     # C linker (required by Rust)
+    (pkgs.callPackage ./scripts/cheatsheet {})  # Keybind cheatsheet overlay
 
     # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client
