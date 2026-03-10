@@ -20,7 +20,7 @@
       # ── Cheatsheet ───────────────────────────────────────────────────────────────
       "$mod, c,       exec, cheatsheet"
       "$mod SHIFT, c, exec, cheatsheet --category hyprland"
-      "$mod SHIFT, c, exec, cheatsheet --category neovim"
+      "$mod CTRL, c , exec, cheatsheet --category neovim"
 
       # ── Screenshot (grimblast) ───────────────────────────────────────────────
       ",      Print, exec, grimblast copy area"   # Select area
