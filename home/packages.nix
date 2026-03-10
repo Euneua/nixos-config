@@ -38,23 +38,15 @@
     # ── Development ──────────────────────────────────────────────────────────
     jetbrains-toolbox       # JetBrains IDE manager
 
-# ── Communication ────────────────────────────────────────────────────────
+    # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client
     signal-desktop          # Encrypted messenger
     vesktop                 # Discord client with Vencord (better client mods)
 
-    # ── Utilities / Debugging ────────────────────────────────────────────────
+    # ── Utilities ────────────────────────────────────────────────────────────
     wlr-randr               # Wayland display configuration tool
-    lshw                    # Hardware information
-    glmark2                 # OpenGL benchmark
     libnotify               # Send desktop notifications from the command line
-    wev                     # Wayland event viewer (useful for finding key names)
-    vim                     # Fallback editor
-    fastfetch               # a bit showoff
-
-    # ── Screen Recording ─────────────────────────────────────────────────────
-    obs-studio
-    obs-studio-plugins.obs-vkcapture  # Vulkan/OpenGL game capture for OBS
+    fastfetch               # System info
   ];
 
   # Waybar and VS Code stubs – full configuration lives in their respective modules
