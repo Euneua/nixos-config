@@ -16,28 +16,30 @@ pub fn parse() -> Vec<Keybind> {
         Err(_) => return vec![],
     };
 
-    // Matches: "$mod, Return, exec, ghostty"
-    // or:      "$mod SHIFT, h, movewindow, l"
-    let re = Regex::new(r#""(\$mod[^,]*),\s*([^,]+),\s*([^,]+),?\s*([^"]*)""#).unwrap();
+// Match single-line keybind entries only
+    let re = Regex::new(r#""(\$mod[^"]*?),\s*([^,]+?),\s*([^,]+?)(?:,\s*([^"]*?))?\s*""#).unwrap();
 
-    re.captures_iter(&content)
-        .map(|cap| {
-            let modifier = cap[1].trim().replace("$mod", "Super");
-            let key      = cap[2].trim().to_string();
-            let action   = cap[3].trim().to_string();
-            let arg      = cap[4].trim().to_string();
+    content.lines()
+        .filter(|line| line.trim().starts_with('"') && line.contains("$mod"))
+        .flat_map(|line| {
+            re.captures_iter(line).map(|cap| {
+                let modifier = cap[1].trim().replace("$mod", "Super");
+                let key      = cap[2].trim().to_string();
+                let action   = cap[3].trim().to_string();
+                let arg      = cap.get(4).map(|m| m.as_str().trim().to_string()).unwrap_or_default();
 
-            let desc = if arg.is_empty() {
-                action.clone()
-            } else {
-                format!("{} {}", action, arg)
-            };
+                let desc = if arg.is_empty() {
+                    action.clone()
+                } else {
+                    format!("{} {}", action, arg)
+                };
 
-            Keybind {
-                category: "Hyprland",
-                keys:     format!("{} + {}", modifier, key),
-                desc,
-            }
+                Keybind {
+                    category: "Hyprland",
+                    keys:     format!("{} + {}", modifier, key),
+                    desc,
+                }
+            }).collect::<Vec<_>>()
         })
         .collect()
 }
