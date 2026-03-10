@@ -51,6 +51,7 @@
     wlr-randr               # Wayland display configuration tool
     libnotify               # Send desktop notifications from the command line
     fastfetch               # System info
+    bat                     # Better cat with syntax highlighting
 
     # ── Viewer ───────────────────────────────────────────────────────────────
     zathura                 # Minimal PDF viewer with Vim keybindings

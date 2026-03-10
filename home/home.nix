@@ -11,6 +11,7 @@
     ./git.nix        # Git configuration
     ./fonts.nix      # Font packages and fontconfig defaults
     ./gtk.nix        # GTK theme, icons and cursor
+    ./zsh/zsh.nix
 
     # ── Hyprland ──────────────────────────────────────────────────────────────
     ./hypr/hyprland          # Window manager (imports all hyprland sub-modules)

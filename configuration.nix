@@ -114,12 +114,16 @@
   # ── Steam ───────────────────────────────────────────────────────────────────
   programs.steam.enable = true;
 
+  # ── Zsh ─────────────────────────────────────────────────────────────────────
+  programs.zsh.enable = true;  # Required to use zsh as login shell
+
   # ── User ────────────────────────────────────────────────────────────────────
   users.users.jannick = {
     isNormalUser = true;
     description  = "Jannick";
     extraGroups  = [ "networkmanager" "wheel" ]; # wheel = sudo access
     packages     = with pkgs; [];
+    shell        = pkgs.zsh;  # set zsh as default shell
   };
 
   # ── Packages ────────────────────────────────────────────────────────────────
