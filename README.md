@@ -13,7 +13,7 @@ My personal NixOS configuration – flake-based with Home Manager, Hyprland and 
 | **GPU** | Intel + NVIDIA RTX 4060 (Optimus) |
 | **Display** | WQHD 2560x1600 (16:10), 1.6x fractional scaling |
 | **Terminal** | Ghostty |
-| **Editor** | Neovim (programs.neovim + Lua) |
+| **Editor** | Neovim (pkgs.wrapNeovim + Lua) |
 | **Theme** | Catppuccin Mocha |
 ## Structure
 ```
@@ -37,6 +37,7 @@ My personal NixOS configuration – flake-based with Home Manager, Hyprland and 
     ├── nvim/
     │   ├── default.nix
     │   └── lua/
+    │       ├── init.lua
     │       ├── options.lua
     │       ├── keymaps.lua
     │       └── plugins/
@@ -47,7 +48,7 @@ My personal NixOS configuration – flake-based with Home Manager, Hyprland and 
 ```
 ## Components
 - **Hyprland** – hjkl navigation, workspaces 1-5 on number keys, 6-10 on z,u,i,o,p
-- **Neovim** – plugins via Nix, config in Lua, Catppuccin Mocha, LSP (nixd, pyright), Telescope, LazyGit
+- **Neovim** – plugins via Nix (pkgs.wrapNeovim), config in Lua, Catppuccin Mocha, LSP (nixd, pyright), Telescope, LazyGit
 - **Ghostty** – JetBrainsMono Nerd Font, ligatures, transparent background
 - **Waybar** – workspaces, clock, network, audio, battery, notifications
 - **SwayNC** – notification center with Catppuccin Mocha styling
@@ -68,5 +69,21 @@ These files contain settings that are **specific to my machine** and must be adj
 ```bash
 sudo nixos-rebuild switch --flake /etc/nixos#nixos
 ```
+## Post-Install Setup
+Some steps cannot be automated via Nix and must be done manually after the first rebuild.
+### Neovim
+Plugins are managed by Nix – only plugin changes require a rebuild. Lua config changes take effect immediately.
+After rebuilding, create a symlink so Neovim can find the Lua config:
+```bash
+ln -s /etc/nixos/home/nvim/lua ~/.config/nvim
+```
+### Threema
+Threema is not available in nixpkgs and must be installed via Flatpak after enabling `services.flatpak`:
+```bash
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install --from https://releases.threema.ch/flatpak/threema-desktop/ch.threema.threema-desktop.flatpakref
+```
+### Tuta Mail
+After first launch, Tuta will ask to set up a keyring password. Leave it empty so it unlocks automatically on login (recommended for single-user systems with auto-login).
 ## Notes
 The README and all inline comments throughout this configuration were written with the assistance of AI.

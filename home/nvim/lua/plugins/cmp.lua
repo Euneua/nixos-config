@@ -9,10 +9,10 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },  -- Suggestions from the active LSP server
-    { name = "buffer" },    -- Words from the current buffer
-    { name = "path" },      -- File system paths
-    { name = "luasnip" },   -- Code snippets via LuaSnip
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "path" },
+    { name = "luasnip" },
   }),
   mapping = cmp.mapping.preset.insert({
     ["<C-Space>"] = cmp.mapping.complete(),

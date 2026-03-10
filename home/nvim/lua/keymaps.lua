@@ -14,11 +14,11 @@ map("n", "<leader>fb", "<cmd>Telescope buffers<cr>",    { desc = "Buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>",  { desc = "Help Tags" })
 
 -- ── LSP ───────────────────────────────────────────────────────────────────────
-map("n", "gd",          vim.lsp.buf.definition,  { desc = "Go to Definition" })
-map("n", "gr",          vim.lsp.buf.references,  { desc = "References" })
-map("n", "K",           vim.lsp.buf.hover,        { desc = "Hover Docs" })
-map("n", "<leader>ca",  vim.lsp.buf.code_action, { desc = "Code Action" })
-map("n", "<leader>rn",  vim.lsp.buf.rename,       { desc = "Rename Symbol" })
+map("n", "gd",         vim.lsp.buf.definition,  { desc = "Go to Definition" })
+map("n", "gr",         vim.lsp.buf.references,  { desc = "References" })
+map("n", "K",          vim.lsp.buf.hover,        { desc = "Hover Docs" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+map("n", "<leader>rn", vim.lsp.buf.rename,       { desc = "Rename Symbol" })
 
 -- ── Formatting ────────────────────────────────────────────────────────────────
 map("n", "<leader>cf", function() require("conform").format() end, { desc = "Format Buffer" })
@@ -36,7 +36,6 @@ map("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
 map("n", "<leader>sh", "<cmd>split<cr>",  { desc = "Horizontal Split" })
 
 -- ── Centered Navigation ───────────────────────────────────────────────────────
--- Keeps the cursor vertically centered while scrolling and searching
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down Centered" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up Centered" })
 map("n", "n",     "nzzzv",   { desc = "Next Search Centered" })
@@ -44,6 +43,5 @@ map("n", "N",     "Nzzzv",   { desc = "Prev Search Centered" })
 map("n", "G",     "Gzz",     { desc = "Goto Last Line Centered" })
 
 -- ── Visual Mode ───────────────────────────────────────────────────────────────
--- Move selected lines up and down while keeping indentation
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Line Down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Line Up" })

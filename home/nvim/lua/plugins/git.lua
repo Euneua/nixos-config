@@ -1,5 +1,4 @@
 -- ── Sign Column Indicators ────────────────────────────────────────────────────
--- Shows git diff status in the sign column (left side of the editor)
 require("gitsigns").setup({
   signs = {
     add          = { text = "│" },

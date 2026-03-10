@@ -1,6 +1,3 @@
--- ── Syntax Highlighting ───────────────────────────────────────────────────────
--- nvim-treesitter v2 – highlighting is enabled automatically, no setup needed
-
 -- ── Auto Brackets ─────────────────────────────────────────────────────────────
 require("nvim-autopairs").setup({})
 
