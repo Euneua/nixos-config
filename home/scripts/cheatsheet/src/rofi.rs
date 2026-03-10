@@ -9,7 +9,7 @@ use crate::parser::Keybind;
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const ROFI_THEME: &str = "/etc/nixos/home/rofi/cheatsheet.rasi";
+const ROFI_THEME: &str = "/home/jannick/.config/rofi/cheatsheet.rasi";
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
