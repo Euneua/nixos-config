@@ -37,6 +37,8 @@
 
     # ── Development ──────────────────────────────────────────────────────────
     jetbrains-toolbox       # JetBrains IDE manager
+    cargo                   # Rust package manager
+    rustc                   # Rust compiler
 
     # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client
