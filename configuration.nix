@@ -11,10 +11,18 @@
   # ── Nix Settings ────────────────────────────────────────────────────────────
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    # Hyprland binary cache – speeds up builds by providing pre-built binaries
     substituters         = [ "https://hyprland.cachix.org" ];
     trusted-substituters = [ "https://hyprland.cachix.org" ];
     trusted-public-keys  = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    auto-optimise-store  = true;  # Deduplicate store paths automatically
+  };
+
+  # ── Nix Garbage Collection ──────────────────────────────────────────────────
+  # Automatically delete store entries older than 7 days
+  nix.gc = {
+    automatic = true;
+    dates     = "weekly";
+    options   = "--delete-older-than 7d";
   };
 
   # ── Hyprland ────────────────────────────────────────────────────────────────
