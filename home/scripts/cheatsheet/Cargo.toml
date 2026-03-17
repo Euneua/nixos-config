@@ -1,9 +1,0 @@
-[package]
-name = "cheatsheet"
-version = "0.1.0"
-edition = "2024"
-
-# ── Dependencies ──────────────────────────────────────────────────────────────
-[dependencies]
-regex = "1"        # Parsing keybinds.nix and keymaps.lua
-clap  = { version = "4", features = ["derive"] }  # CLI arguments (--category hyprland etc.)

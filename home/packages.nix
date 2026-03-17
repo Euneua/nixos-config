@@ -6,22 +6,22 @@
 {
   home.packages = with pkgs; [
     # ── Wayland / Desktop ────────────────────────────────────────────────────
-    swaynotificationcenter  # Notification daemon (config in swaync/swaync.nix)
+    swaynotificationcenter  # Notification daemon (config in desktop/swaync.nix)
     swww                    # Wallpaper daemon
     wl-clipboard            # Wayland clipboard utilities (wl-copy, wl-paste)
     cliphist                # Clipboard history manager (accessible via Super+V)
 
     # ── Terminal ─────────────────────────────────────────────────────────────
-    ghostty                 # Terminal emulator (config in ghostty/ghostty.nix)
+    ghostty                 # Terminal emulator (config in apps/ghostty.nix)
 
     # ── Launcher ─────────────────────────────────────────────────────────────
-    rofi                    # Application launcher (config in rofi/rofi.nix)
+    rofi                    # Application launcher (config in apps/rofi.nix)
 
     # ── File Manager ─────────────────────────────────────────────────────────
-    yazi                    # Terminal file manager (config in yazi/yazi.nix)
+    yazi                    # Terminal file manager (config in apps/yazi.nix)
 
     # ── Screenshots ──────────────────────────────────────────────────────────
-    grimblast               # Screenshot tool (keybinds in hyprland/keybinds.nix)
+    grimblast               # Screenshot tool (keybinds in desktop/hypr/hyprland/keybinds.nix)
 
     # ── Media & Audio ────────────────────────────────────────────────────────
     playerctl               # Media player control (play, pause, next, previous)
@@ -29,18 +29,14 @@
     # ── Brightness ───────────────────────────────────────────────────────────
     brightnessctl           # Screen brightness control
 
-    # ── Bluetooth ────────────────────────────────────────────────────────────
-    blueman                 # Bluetooth manager applet
-
     # ── Network ──────────────────────────────────────────────────────────────
-    networkmanagerapplet    # Network manager tray applet (started in autostart.nix)
+    networkmanagerapplet    # Network manager tray applet (started in desktop/hypr/hyprland/autostart.nix)
 
     # ── Development ──────────────────────────────────────────────────────────
     jetbrains-toolbox       # JetBrains IDE manager
     cargo                   # Rust package manager
     rustc                   # Rust compiler
     gcc                     # C linker (required by Rust)
-    (pkgs.callPackage ./scripts/cheatsheet {})  # Keybind cheatsheet overlay
 
     # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client
@@ -52,14 +48,14 @@
     libnotify               # Send desktop notifications from the command line
     fastfetch               # System info
     bat                     # Better cat with syntax highlighting
+    tree                    # Directory tree viewer
 
     # ── Viewer ───────────────────────────────────────────────────────────────
     zathura                 # Minimal PDF viewer with Vim keybindings
     imv                     # Minimal image viewer for Wayland
   ];
 
-  # Waybar and VS Code stubs – full configuration lives in their respective modules
-  programs.waybar.enable = true;
+  # VS Code – full configuration can be extended here if needed
   programs.vscode.enable = true;
 
   # direnv – activate Nix shells automatically when entering project directories

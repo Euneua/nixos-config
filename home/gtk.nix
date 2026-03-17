@@ -1,4 +1,4 @@
-# gtk.nix
+# home/gtk.nix
 # GTK theme configuration applied to all GTK3 and GTK4 applications.
 # Uses Catppuccin Mocha Mauve to match the Neovim and system colorscheme.
 
@@ -7,7 +7,7 @@
   gtk = {
     enable = true;
 
-    # ── Theme ───────────────────────────────────────────────────────────────
+    # ── Theme ─────────────────────────────────────────────────────────────
     # Catppuccin Mocha with Mauve accent – matches the Neovim colorscheme
     theme = {
       name    = "catppuccin-mocha-mauve-standard+default";
@@ -17,21 +17,21 @@
       };
     };
 
-    # ── Icons ───────────────────────────────────────────────────────────────
+    # ── Icons ─────────────────────────────────────────────────────────────
     iconTheme = {
       name    = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
 
-    # ── Cursor ──────────────────────────────────────────────────────────────
-    # Also set system-wide via home.pointerCursor (see home.nix)
+    # ── Cursor ────────────────────────────────────────────────────────────
+    # Also set system-wide via home.pointerCursor (see home/default.nix)
     cursorTheme = {
       name    = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
       size    = 24;
     };
 
-    # ── Font ────────────────────────────────────────────────────────────────
+    # ── Font ──────────────────────────────────────────────────────────────
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 11;
