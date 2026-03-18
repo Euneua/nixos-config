@@ -14,172 +14,170 @@ My personal NixOS configuration – flake-based with Home Manager, Hyprland and 
 | | |
 |---|---|
 | **OS** | NixOS (unstable / 26.05 Yarara) |
+| **Hostname** | thinkbook |
 | **WM** | Hyprland 0.54.0 |
 | **GPU** | Intel + NVIDIA RTX 4060 (Optimus laptop) |
 | **Display** | WQHD 2560x1600 (16:10), 1.6x fractional scaling |
 | **Terminal** | Ghostty |
 | **Editor** | Neovim (`pkgs.wrapNeovim` + Lua) |
-| **Shell** | Bash (default) |
+| **Shell** | Zsh + Starship |
 | **Theme** | Catppuccin Mocha |
 
 ---
 
 ## Structure
-
 ```
 /etc/nixos/
-├── flake.nix                    # Entry point – inputs and system config
-├── configuration.nix            # System-level settings
-├── hardware.nix                 # GPU drivers (Intel + NVIDIA Optimus)
-├── hardware-configuration.nix   # Auto-generated – do not edit
+├── flake.nix
+├── flake.lock
+├── README.md
+├── hosts/
+│   └── thinkbook/
+│       ├── default.nix               # System-level settings
+│       ├── hardware.nix              # GPU drivers (Intel + NVIDIA Optimus)
+│       └── hardware-configuration.nix  # Auto-generated – do not edit
 └── home/
-    ├── home.nix                 # Home Manager entry point
-    ├── colors.nix               # Central Catppuccin Mocha color definitions
-    ├── packages.nix             # User packages and program stubs
-    ├── fonts.nix                # JetBrainsMono Nerd Font + Noto Emoji
-    ├── gtk.nix                  # GTK theme, icons and cursor
-    ├── git.nix                  # Git identity and defaults
-    ├── firefox/firefox.nix      # Browser config, extensions, privacy settings
-    ├── ghostty/ghostty.nix      # Terminal emulator
-    ├── rofi/rofi.nix            # App launcher + cheatsheet.rasi (auto-generated)
-    ├── waybar/waybar.nix        # Status bar
-    ├── swaync/swaync.nix        # Notification daemon
-    ├── yazi/yazi.nix            # Terminal file manager
-    ├── scripts/
-    │   └── cheatsheet/          # Keybind cheatsheet tool (Rust)
-    │       ├── default.nix      # Nix derivation
-    │       ├── Cargo.toml
-    │       └── src/
-    │           ├── main.rs
-    │           ├── rofi.rs
-    │           └── parser/
-    │               ├── mod.rs
-    │               ├── hyprland.rs
-    │               └── neovim.rs
-    ├── nvim/
-    │   ├── default.nix          # Neovim with plugins via Nix
-    │   └── lua/
-    │       ├── init.lua
-    │       ├── options.lua
-    │       ├── keymaps.lua
-    │       └── plugins/
-    │           ├── ui.lua
-    │           ├── editor.lua
-    │           ├── telescope.lua
-    │           ├── git.lua
-    │           ├── lsp.lua
-    │           └── cmp.lua
-    └── hypr/
-        ├── hyprland/
-        │   ├── default.nix
-        │   ├── variables.nix    # Gaps, borders, animations
-        │   ├── env.nix          # Session environment variables
-        │   ├── monitors.nix     # Monitor layout and scaling ⚠️
-        │   ├── input.nix        # Keyboard, mouse, touchpad
-        │   ├── keybinds.nix     # All keybindings
-        │   ├── window-rules.nix
-        │   ├── layer-rules.nix
-        │   ├── workspaces.nix
-        │   ├── autostart.nix
-        │   ├── dwindle.nix
-        │   ├── master.nix
-        │   ├── gestures.nix
-        │   ├── misc.nix
-        │   └── xwayland.nix
-        ├── hypridle/hypridle.nix
-        └── hyprlock/hyprlock.nix
+    ├── default.nix                   # Home Manager entry point
+    ├── colors.nix                    # Central Catppuccin Mocha color definitions
+    ├── packages.nix                  # User packages
+    ├── fonts.nix
+    ├── gtk.nix
+    ├── git.nix
+    ├── apps/
+    │   ├── firefox.nix
+    │   ├── ghostty.nix
+    │   ├── rofi.nix
+    │   ├── yazi.nix
+    │   ├── zsh.nix
+    │   └── nvim/
+    │       ├── default.nix           # Plugins via Nix
+    │       └── lua/                  # Lua config (symlinked to ~/.config/nvim)
+    │           ├── init.lua
+    │           ├── options.lua
+    │           ├── keymaps.lua
+    │           └── plugins/
+    └── desktop/
+        ├── waybar.nix
+        ├── swaync.nix
+        └── hypr/
+            ├── hypridle.nix
+            ├── hyprlock.nix
+            └── hyprland/
+                ├── default.nix
+                ├── variables.nix     # Gaps, borders, animations
+                ├── env.nix           # Session environment variables
+                ├── monitors.nix      # Monitor layout and scaling ⚠️
+                ├── input.nix
+                ├── keybinds.nix
+                ├── window-rules.nix
+                ├── layer-rules.nix
+                ├── workspaces.nix
+                ├── autostart.nix
+                ├── dwindle.nix
+                ├── master.nix
+                ├── gestures.nix
+                ├── misc.nix
+                └── xwayland.nix
 ```
 
 ---
 
-## Components
+## Keybinds
 
-### Window Manager – Hyprland
-- hjkl navigation (Vim-style focus and window movement)
-- Workspaces 1–5 on number keys, 6–10 on `z u i o p`
-- Dwindle tiling layout
-- Touchpad gestures (3-finger swipe)
-- Fractional scaling via custom modeline
+### Hyprland
 
-### Editor – Neovim
-- Plugins managed via Nix (`pkgs.wrapNeovim`), Lua config loaded at runtime
-- Lua changes take effect immediately without a rebuild
-- Theme: Catppuccin Mocha
-- LSP: `nixd` (Nix), `pyright` (Python)
-- Plugins: Telescope, LazyGit, neo-tree, lualine, bufferline, which-key, noice, conform, treesitter, nvim-cmp
+| Key | Action |
+|-----|--------|
+| `Super + Return` | Terminal (Ghostty) |
+| `Super + Space` | App launcher (Rofi) |
+| `Super + B` | Browser (Firefox) |
+| `Super + E` | File manager (Yazi) |
+| `Super + G` | Git TUI (lazygit) |
+| `Super + V` | Clipboard picker |
+| `Super + Tab` | Window switcher |
+| `Super + Q` | Kill window |
+| `Super + F` | Fullscreen |
+| `Super + T` | Toggle float |
+| `Super + h/j/k/l` | Focus window |
+| `Super + Shift + h/j/k/l` | Move window |
+| `Super + Ctrl + h/j/k/l` | Resize window |
+| `Super + 1–5` | Switch workspace |
+| `Super + z/u/i/o/p` | Workspace 6–10 |
+| `Super + Shift + 1–5` | Move to workspace |
+| `Print` | Screenshot area |
+| `Shift + Print` | Screenshot screen |
 
-### Keybind Cheatsheet – `cheatsheet`
-- Written in Rust, built via Nix
-- Parses `keybinds.nix` and `keymaps.lua` live
-- Opens as a Rofi overlay
-- Category prefixes `[H]` `[N]` `[B]` colored from `colors.nix` at compile time
-- Keybinds: `Super+C` (all), `Super+Shift+C` (Hyprland), `Super+Ctrl+C` (Neovim)
+### Neovim
 
-### Bar – Waybar
-- Modules: workspaces, clock (with calendar tooltip), network, audio, battery, notification bell
-- Started as a systemd user service
-
-### Other Applications
-| App | Notes |
-|-----|-------|
-| Ghostty | JetBrainsMono Nerd Font, ligatures, transparent background |
-| Rofi | App launcher, window switcher, clipboard picker |
-| SwayNC | Notification center |
-| Yazi | Terminal file manager |
-| Firefox | uBlock Origin, Bitwarden, Vimium, Dark Reader, Brave Search |
-| Tuta Mail | Encrypted email (native package) |
-| Signal | Encrypted messenger |
-| Vesktop | Discord with Vencord |
-| Steam | Via `programs.steam.enable` |
-| Threema | Encrypted messenger (Flatpak) |
-| JetBrains Toolbox | IDE manager |
+| Key | Action |
+|-----|--------|
+| `<leader>w` | Save |
+| `<leader>q` | Quit |
+| `<leader>e` | File manager (Oil) |
+| `<leader>ff` | Find files |
+| `<leader>fg` | Live grep |
+| `<leader>ft` | Search TODOs |
+| `<leader>a` | Harpoon add file |
+| `<leader>h` | Harpoon menu |
+| `<leader>1–4` | Harpoon jump |
+| `s` | Flash jump |
+| `S` | Flash treesitter |
+| `gd` | Go to definition |
+| `gr` | References |
+| `K` | Hover docs |
+| `<leader>ca` | Code action |
+| `<leader>rn` | Rename symbol |
+| `<leader>cf` | Format buffer |
+| `<leader>xx` | Diagnostics |
+| `<leader>gg` | LazyGit |
+| `<leader>gp` | Preview hunk |
+| `]g / [g` | Next/prev hunk |
+| `<S-l> / <S-h>` | Next/prev buffer |
 
 ---
 
 ## Theming
 
-Colors are defined centrally in `home/colors.nix` (Catppuccin Mocha palette) and imported wherever needed. Changing a value in `colors.nix` and rebuilding propagates the change to:
+Colors are defined centrally in `home/colors.nix` (Catppuccin Mocha palette) and imported wherever needed. Changing a value in `colors.nix` and rebuilding propagates the change to Hyprland, Waybar, SwayNC, Rofi, Yazi, Ghostty, Hyprlock and the Zsh Starship prompt.
 
-- Hyprland borders and decorations
-- Waybar, SwayNC, Rofi, Yazi, Ghostty, Hyprlock
-- Rofi `cheatsheet.rasi` (auto-generated via `home.file`)
-- Cheatsheet prefix colors (injected as compile-time env vars)
+Neovim uses `catppuccin-nvim` directly for deep plugin integration rather than `colors.nix`.
 
 ---
 
 ## Hardware-specific files
 
-These files **must be adapted** before using this config on a different machine:
-
 | File | What to change |
 |------|---------------|
-| `hardware.nix` | PCI Bus IDs (`intelBusId`, `nvidiaBusId`), NVIDIA driver settings |
-| `hardware-configuration.nix` | Regenerate with `nixos-generate-config` on your machine |
-| `hypr/hyprland/monitors.nix` | Monitor name (`eDP-1`), modeline, resolution, scaling |
-| `hypr/hyprland/env.nix` | Remove NVIDIA vars if you don't have an NVIDIA GPU |
-| `firefox/firefox.nix` | `media.ffmpeg.vaapi.enabled` – Intel VA-API specific |
+| `hosts/thinkbook/hardware.nix` | PCI Bus IDs (`intelBusId`, `nvidiaBusId`), NVIDIA driver settings |
+| `hosts/thinkbook/hardware-configuration.nix` | Regenerate with `nixos-generate-config` on your machine |
+| `home/desktop/hypr/hyprland/monitors.nix` | Monitor name, modeline, resolution, scaling |
+| `home/desktop/hypr/hyprland/env.nix` | Remove NVIDIA vars if no NVIDIA GPU |
+| `home/apps/firefox.nix` | `media.ffmpeg.vaapi.enabled` – Intel VA-API specific |
 
 ---
 
 ## Adapting to your system
 
-**1. Username** – `jannick` appears in:
-- `configuration.nix` → `users.users.jannick` and `autoLogin.user`
-- `home/home.nix` → `home.username` and `home.homeDirectory`
-- `home/scripts/cheatsheet/src/rofi.rs` → `ROFI_THEME` path
+**1. Hostname** – `thinkbook` appears in:
+- `hosts/thinkbook/default.nix` → `networking.hostName`
+- `flake.nix` → `nixosConfigurations.thinkbook`
+- `home/apps/zsh.nix` → `rebuild` alias
 
-**2. GPU** – If you don't have an Intel + NVIDIA Optimus setup:
-- Replace or remove `hardware.nix`
-- Remove NVIDIA-specific entries from `env.nix`
+**2. Username** – `jannick` appears in:
+- `hosts/thinkbook/default.nix` → `users.users.jannick` and `autoLogin.user`
+- `home/default.nix` → `home.username` and `home.homeDirectory`
+- `flake.nix` → `home-manager.users.jannick`
+
+**3. GPU** – If you don't have an Intel + NVIDIA Optimus setup:
+- Replace or remove `hosts/thinkbook/hardware.nix`
+- Remove NVIDIA-specific entries from `home/desktop/hypr/hyprland/env.nix`
 - Regenerate `hardware-configuration.nix`
 
-**3. Display** – If your monitor is different:
-- Update `monitors.nix` with your monitor name and resolution
-- Adjust or remove the custom modeline and scaling factor
+**4. Display** – Update `monitors.nix` with your monitor name, resolution and scaling factor.
 
-**4. Keyboard layout** – Currently set to `de` (German) in:
-- `configuration.nix` → `services.xserver.xkb.layout` and `console.keyMap`
-- `hypr/hyprland/input.nix` → `kb_layout`
+**5. Keyboard layout** – Currently `de` (German) in:
+- `hosts/thinkbook/default.nix` → `services.xserver.xkb.layout` and `console.keyMap`
+- `home/desktop/hypr/hyprland/input.nix` → `kb_layout`
 
 ---
 
@@ -195,49 +193,26 @@ These files **must be adapted** before using this config on a different machine:
 ---
 
 ## Rebuild
-
-```bash
-sudo nixos-rebuild switch --flake /etc/nixos#nixos
-```
-
-Always stage changes before rebuilding (Flakes only read tracked files):
-
 ```bash
 git add -A
-sudo nixos-rebuild switch --flake /etc/nixos#nixos
+sudo nixos-rebuild switch --flake /etc/nixos#thinkbook
 git commit -m "your message"
 ```
 
 ---
 
-## Post-install setup
-
-Some steps cannot be automated via Nix and must be done manually after the first rebuild.
-
-### Neovim
-Plugins are managed by Nix. Lua config changes take effect immediately without a rebuild. After the first rebuild, create the symlink so Neovim finds the Lua config:
-
-```bash
-ln -s /etc/nixos/home/nvim/lua ~/.config/nvim
-```
+## Post-install
 
 ### Threema
-Not available in nixpkgs – install via Flatpak after enabling `services.flatpak`:
-
 ```bash
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install --from https://releases.threema.ch/flatpak/threema-desktop/ch.threema.threema-desktop.flatpakref
 ```
 
 ### Tuta Mail
-On first launch, Tuta will ask to set up a keyring password. Leave it empty for automatic unlock on login (recommended for single-user systems with auto-login enabled).
+On first launch, leave the keyring password empty for automatic unlock on login.
 
 ### Wallpaper
-The autostart config expects a wallpaper at `~/Pictures/wallpapers/wallpaper.jpg`. Place your wallpaper there or update the path in `hypr/hyprland/autostart.nix` and `hypr/hyprlock/hyprlock.nix`.
-
----
-
-## Notes
-
-- All inline comments throughout the configuration are written in English
-- The README and inline comments were written with AI assistance
+Place your wallpaper at `~/Pictures/wallpapers/wallpaper.jpg` or update the path in:
+- `home/desktop/hypr/hyprland/autostart.nix`
+- `home/desktop/hypr/hyprlock.nix`
