@@ -1,50 +1,46 @@
 -- home/apps/nvim/lua/plugins/ui.lua
--- UI plugins: theme, statusline, bufferline, keybind hints, notifications, file tree.
+-- UI plugins: theme, statusline, icons, keybind hints.
 
 -- ── Theme ─────────────────────────────────────────────────────────────────────
-require("catppuccin").setup({ flavour = "mocha" })
+require("catppuccin").setup({
+	flavour = "mocha",
+	transparent_background = false,
+	integrations = {
+		blink_cmp = true,
+		flash = true,
+		gitsigns = true,
+		harpoon = true,
+		indent_blankline = { enabled = true },
+		lsp_trouble = true,
+		telescope = { enabled = true },
+		treesitter = true,
+		which_key = true,
+	},
+})
 vim.cmd.colorscheme("catppuccin")
+
+-- ── Icons ─────────────────────────────────────────────────────────────────────
+require("mini.icons").setup()
 
 -- ── Statusline ────────────────────────────────────────────────────────────────
 require("lualine").setup({
-  options = { theme = "catppuccin" },
+	options = {
+		theme = "catppuccin",
+		globalstatus = true,
+		component_separators = "",
+		section_separators = { left = "", right = "" },
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = { { "filename", path = 1 } }, -- Relative path
+		lualine_x = { "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
 })
-
--- ── Bufferline ────────────────────────────────────────────────────────────────
-require("bufferline").setup({})
 
 -- ── Keybind Hints ─────────────────────────────────────────────────────────────
-require("which-key").setup({})
-
--- ── Notifications ─────────────────────────────────────────────────────────────
-local notify = require("notify")
-notify.setup({})
-vim.notify = notify
-
--- ── Command Line UI ───────────────────────────────────────────────────────────
-require("noice").setup({
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"]                = true,
-      ["cmp.entry.get_documentation"]                  = true,
-    },
-  },
-  presets = {
-    bottom_search         = true,
-    command_palette       = true,
-    long_message_to_split = true,
-  },
-})
-
--- ── File Tree ─────────────────────────────────────────────────────────────────
-require("neo-tree").setup({
-  window = { width = 30 },
-  filesystem = {
-    filtered_items = {
-      visible       = true,
-      hide_hidden   = false,
-      hide_dotfiles = false,
-    },
-  },
+require("which-key").setup({
+	delay = 300,
 })

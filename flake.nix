@@ -21,11 +21,11 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.thinkbook = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/nixos
+        ./hosts/thinkbook
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs        = true;

@@ -8,7 +8,6 @@
 let
   neovim = pkgs.wrapNeovim pkgs.neovim-unwrapped {
     configure = {
-      # Load the Lua config from ~/.config/nvim/init.lua at runtime
       customRC = ''
         lua dofile(vim.fn.stdpath("config") .. "/init.lua")
       '';
@@ -19,21 +18,25 @@ let
 
         # ── UI ────────────────────────────────────────────────────────────
         lualine-nvim
-        bufferline-nvim
         which-key-nvim
-        noice-nvim
-        nvim-notify
-        nvim-web-devicons
-        neo-tree-nvim
+        mini-nvim
         nui-nvim
 
         # ── Editor ────────────────────────────────────────────────────────
         nvim-treesitter.withAllGrammars
         nvim-autopairs
-        comment-nvim
         indent-blankline-nvim
         hardtime-nvim
         conform-nvim
+        nvim-surround
+        todo-comments-nvim
+
+        # ── Navigation ────────────────────────────────────────────────────
+        flash-nvim
+        harpoon2
+
+        # ── File Manager ──────────────────────────────────────────────────
+        oil-nvim
 
         # ── Telescope ─────────────────────────────────────────────────────
         plenary-nvim
@@ -42,29 +45,36 @@ let
 
         # ── Git ───────────────────────────────────────────────────────────
         gitsigns-nvim
-        lazygit-nvim
 
         # ── LSP ───────────────────────────────────────────────────────────
         nvim-lspconfig
 
         # ── Completion ────────────────────────────────────────────────────
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-buffer
-        cmp-path
-        cmp_luasnip
+        blink-cmp
         luasnip
+
+        # ── Diagnostics ───────────────────────────────────────────────────
+        trouble-nvim
       ];
     };
 
-    extraMakeWrapperArgs = "--prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [
-      nixd
-      pyright
-      nixfmt
-      black
-      lazygit
-      wl-clipboard
-    ])}";
+    extraMakeWrapperArgs = "--prefix PATH : ${
+      pkgs.lib.makeBinPath (
+        with pkgs;
+        [
+          nixd
+          pyright
+          rust-analyzer
+          lua-language-server
+          taplo
+          nixfmt
+          black
+          rustfmt
+          stylua
+          wl-clipboard
+        ]
+      )
+    }";
   };
 in
 {
@@ -72,7 +82,7 @@ in
 
   # Symlink the Lua config to ~/.config/nvim so Neovim finds it at runtime
   home.file.".config/nvim" = {
-    source    = ./lua;
+    source = ./lua;
     recursive = true;
   };
 }

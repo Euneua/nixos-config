@@ -1,8 +1,8 @@
 -- home/apps/nvim/lua/plugins/git.lua
 -- Git integration: sign column indicators and LazyGit TUI.
--- <leader>gg: open LazyGit
+-- <leader>gg: LazyGit | <leader>gp: preview hunk | <leader>gs: stage | <leader>gr: reset | ]g/[g: next/prev hunk
 
--- ── Sign Column Indicators ────────────────────────────────────────────────────
+-- ── Gitsigns ──────────────────────────────────────────────────────────────────
 require("gitsigns").setup({
   signs = {
     add          = { text = "│" },
@@ -11,5 +11,10 @@ require("gitsigns").setup({
     topdelete    = { text = "‾" },
     changedelete = { text = "~" },
     untracked    = { text = "│" },
+  },
+  current_line_blame = true,  -- Show git blame inline on current line
+  current_line_blame_opts = {
+    delay = 500,
+    virt_text_pos = "eol",
   },
 })

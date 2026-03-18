@@ -29,7 +29,7 @@ in
       "..." = "cd ../..";
 
       # Nix
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#thinkbook";
       cleanup = "sudo nix-collect-garbage -d";
 
       # Git

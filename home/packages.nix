@@ -37,6 +37,7 @@
     cargo                   # Rust package manager
     rustc                   # Rust compiler
     gcc                     # C linker (required by Rust)
+    lazygit                 # Git TUI (open via $mod+G)
 
     # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client

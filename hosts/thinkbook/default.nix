@@ -56,7 +56,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ── Networking ──────────────────────────────────────────────────────────────
-  networking.hostName              = "nixos";
+  networking.hostName              = "thinkbook";
   networking.networkmanager.enable = true;
 
   # ── Bluetooth ───────────────────────────────────────────────────────────────

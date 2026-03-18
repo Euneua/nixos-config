@@ -16,6 +16,7 @@
       "$mod, V,      exec, cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"
       "$mod, Tab,    exec, rofi -show window"
       "$mod, E,      exec, ghostty -e yazi"
+      "$mod, G,      exec, ghostty -e lazygit"
       "$mod, B,      exec, firefox"
 
       # ── Cheatsheet ────────────────────────────────────────────────────────
@@ -24,16 +25,16 @@
       "$mod CTRL, c,   exec, cheatsheet --category neovim"
 
       # ── Screenshot (grimblast) ────────────────────────────────────────────
-      ",      Print, exec, grimblast copy area"    # Select area
-      "SHIFT, Print, exec, grimblast copy screen"  # Full screen
-      "$mod,  Print, exec, grimblast copy active"  # Active window
+      ",      Print, exec, grimblast copy area" # Select area
+      "SHIFT, Print, exec, grimblast copy screen" # Full screen
+      "$mod,  Print, exec, grimblast copy active" # Active window
 
       # ── Window Management ─────────────────────────────────────────────────
       "$mod, Q,       killactive"
-      "$mod, F,       fullscreen, 0"   # True fullscreen
-      "$mod SHIFT, F, fullscreen, 1"   # Maximize (keep gaps)
+      "$mod, F,       fullscreen, 0" # True fullscreen
+      "$mod SHIFT, F, fullscreen, 1" # Maximize (keep gaps)
       "$mod, T,       togglefloating"
-      "$mod, P,       pseudo"          # Toggle pseudotile
+      "$mod, P,       pseudo" # Toggle pseudotile
 
       # ── Focus (hjkl) ──────────────────────────────────────────────────────
       "$mod, h, movefocus, l"
@@ -105,3 +106,4 @@
     ];
   };
 }
+
