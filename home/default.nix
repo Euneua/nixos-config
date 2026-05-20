@@ -12,7 +12,7 @@
     ./gtk.nix       # GTK theme, icons and cursor
 
     # ── Desktop ─────────────────────────────────────────────────────────────
-    ./desktop/hypr/hyprland    # Window manager (imports all hyprland sub-modules)
+    ./desktop/hypr/hyprland    #Window manager (imports all hyprland sub-modules)
     ./desktop/hypr/hypridle.nix  # Idle daemon – screen lock and DPMS
     ./desktop/hypr/hyprlock.nix  # Lock screen
     ./desktop/waybar.nix       # Status bar

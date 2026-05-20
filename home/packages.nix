@@ -38,6 +38,12 @@
     rustc                   # Rust compiler
     gcc                     # C linker (required by Rust)
     lazygit                 # Git TUI (open via $mod+G)
+    arduino-ide
+
+    # ── AI / LLM ────────────────────────────────────────────────────────────
+    ollama                  # Local LLM inference (start with: nvidia-offload ollama serve)
+    opencode                # AI coding agent for terminal
+    nodejs
 
     # ── Communication ────────────────────────────────────────────────────────
     tutanota-desktop        # Encrypted email client

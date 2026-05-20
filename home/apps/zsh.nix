@@ -43,6 +43,9 @@ in
       # Utils
       ls = "ls --color=auto";
       ll = "ls -la --color=auto";
+
+      # Arduino
+      arduino = "NIXOS_OZONE_WL=0 arduino-ide";
     };
 
     # ── Extra Config ──────────────────────────────────────────────────────────

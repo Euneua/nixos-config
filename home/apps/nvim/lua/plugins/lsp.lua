@@ -46,4 +46,14 @@ vim.lsp.config("taplo", {
   capabilities = capabilities,
 })
 
-vim.lsp.enable({ "nixd", "pyright", "rust_analyzer", "lua_ls", "taplo" })
+-- ── TypeScript ────────────────────────────────────────────────────────────────
+vim.lsp.config("ts_ls", {
+  capabilities = capabilities,
+})
+
+-- ── Svelte ────────────────────────────────────────────────────────────────────
+vim.lsp.config("svelte", {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable({ "nixd", "pyright", "rust_analyzer", "lua_ls", "taplo", "ts_ls", "svelte" })

@@ -29,5 +29,10 @@ require("conform").setup({
 		python = { "black" },
 		lua = { "stylua" },
 		toml = { "taplo" },
+    typescript = { "prettier" },
+    svelte     = { "prettier" },
+    css        = { "prettier" },
+    json       = { "prettier" },
+    html       = { "prettier" },
 	},
 })

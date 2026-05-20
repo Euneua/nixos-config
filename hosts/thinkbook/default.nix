@@ -115,11 +115,14 @@
   # ── Zsh ─────────────────────────────────────────────────────────────────────
   programs.zsh.enable = true;  # Required to use zsh as login shell
 
+  # Arduino 
+  services.udev.packages = [ pkgs.arduino-ide];
+  
   # ── User ────────────────────────────────────────────────────────────────────
   users.users.jannick = {
     isNormalUser = true;
     description  = "Jannick";
-    extraGroups  = [ "networkmanager" "wheel" ];  # wheel = sudo access
+    extraGroups  = [ "networkmanager" "wheel" "dialout" ];  # wheel = sudo access
     shell        = pkgs.zsh;
   };
 

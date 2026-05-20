@@ -72,6 +72,10 @@ let
           rustfmt
           stylua
           wl-clipboard
+          nodePackages.typescript-language-server
+          nodePackages.svelte-language-server
+          nodePackages.prettier
+          nodejs
         ]
       )
     }";
