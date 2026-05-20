@@ -7,5 +7,5 @@ hl.workspace_rule({
 })
 
 -- ── Smart gaps – no gaps when only one window ──────────────────────────────────
-hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
-hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+hl.workspace_rule({ workspace = "w[tv1]", gaps_in = 0, gaps_out = { top = 4, right = 0, bottom = 0, left = 0 } })
+hl.workspace_rule({ workspace = "f[1]",   gaps_in = 0, gaps_out = { top = 4, right = 0, bottom = 0, left = 0 } })

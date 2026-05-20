@@ -8,7 +8,6 @@ hl.config({
     font_family                  = "JetBrainsMono Nerd Font", -- Font for Hyprland UI elements
     focus_on_activate            = false,                     -- Don't steal focus on activation requests
     animate_mouse_windowdragging = true,                      -- Animate windows while dragging
-    vfr                          = true,                      -- Variable framerate – reduces GPU usage when idle
     vrr                          = 0,                         -- VRR/FreeSync disabled
     mouse_move_enables_dpms      = true,                      -- Wake display on mouse movement
     key_press_enables_dpms       = true,                      -- Wake display on key press
