@@ -3,45 +3,56 @@
 # To switch themes: home/colors/theme.nix
 
 let p = {
-  crust    = "110f0d";
-  mantle   = "1a1714";
-  base     = "211e1a";
-  surface0 = "2c2925";
-  surface1 = "38342f";
-  surface2 = "47433d";
-  overlay0 = "5c5751";
-  overlay1 = "716b64";
-  overlay2 = "8a837b";
-  subtext0 = "a89f96";
-  subtext1 = "c4bab0";
-  text     = "e2d9ce";
-  lavender = "cfc5f5";
-  mauve    = "b5a8e8";
-  iris     = "9b8fd4";
-  beige    = "e8c99a";
-  sand     = "d4aa78";
-  wheat    = "c09060";
-  red      = "e08080";
-  maroon   = "c06868";
-  peach    = "d49555";
-  yellow   = "d4be70";
-  green    = "8abf78";
-  teal     = "78bfb0";
-  sky      = "a5d4cc";
-  blue     = "88aae0";
-  sapphire = "7898d0";
-  rosewater = "edd8cc";
-  flamingo  = "e0a0a0";
-  pink      = "d8c0f0";
+  # ── Base ──────────────────────────────────────────────────────────────────────
+  crust    = "110f0d"; # Deepest background, shadows
+  mantle   = "1a1714"; # Dimmed background
+  base     = "211e1a"; # Main background
+  surface0 = "2c2925"; # Inactive elements
+  surface1 = "38342f"; # Slightly elevated
+  surface2 = "47433d"; # Borders, separators
+
+  # ── Text ──────────────────────────────────────────────────────────────────────
+  overlay0 = "5c5751"; # Very muted
+  overlay1 = "716b64"; # Muted
+  overlay2 = "8a837b"; # Dimmed
+  subtext0 = "a89f96"; # Secondary text
+  subtext1 = "c4bab0"; # Slightly prominent secondary
+  text     = "e2d9ce"; # Primary text
+
+  # ── Primary Accent ────────────────────────────────────────────────────────────
+  accent   = "cfc5f5"; # Main accent – lavender
+  accent2  = "b5a8e8"; # Mid accent – mauve
+  accent3  = "9b8fd4"; # Dim accent – iris
+
+  # ── Secondary Accent ──────────────────────────────────────────────────────────
+  accent_b  = "e8c99a"; # Secondary accent – beige
+  accent_b2 = "c09060"; # Dim secondary accent – wheat
+
+  # ── Semantic ──────────────────────────────────────────────────────────────────
+  error   = "e08080";
+  error2  = "c06868";
+  warning = "d49555";
+  caution = "d4be70";
+  success = "8abf78";
+  info    = "78bfb0";
+  info2   = "a5d4cc";
+  link    = "88aae0";
+  link2   = "7898d0";
+
+  # ── Decorative ────────────────────────────────────────────────────────────────
+  extra1 = "edd8cc";
+  extra2 = "e0a0a0";
+  extra3 = "d8c0f0";
 }; in
 {
   inherit (p)
     crust mantle base surface0 surface1 surface2
     overlay0 overlay1 overlay2 subtext0 subtext1 text
-    lavender mauve iris beige sand wheat
-    red maroon peach yellow green teal sky blue sapphire
-    rosewater flamingo pink;
+    accent accent2 accent3 accent_b accent_b2
+    error error2 warning caution success info info2 link link2
+    extra1 extra2 extra3;
 
+  # ── RGB ───────────────────────────────────────────────────────────────────────
   crust-rgb    = "17, 15, 13";
   mantle-rgb   = "26, 23, 20";
   base-rgb     = "33, 30, 26";
@@ -51,64 +62,50 @@ let p = {
   overlay0-rgb = "92, 87, 81";
   overlay1-rgb = "113, 107, 100";
   overlay2-rgb = "138, 131, 123";
-  subtext0-rgb = "168, 159, 150";
-  subtext1-rgb = "196, 186, 176";
   text-rgb     = "226, 217, 206";
-  lavender-rgb = "207, 197, 245";
-  mauve-rgb    = "181, 168, 232";
-  iris-rgb     = "155, 143, 212";
-  beige-rgb    = "232, 201, 154";
-  sand-rgb     = "212, 170, 120";
-  wheat-rgb    = "192, 144, 96";
-  red-rgb      = "224, 128, 128";
-  maroon-rgb   = "192, 104, 104";
-  peach-rgb    = "212, 149, 85";
-  yellow-rgb   = "212, 190, 112";
-  green-rgb    = "138, 191, 120";
-  teal-rgb     = "120, 191, 176";
-  sky-rgb      = "165, 212, 204";
-  blue-rgb     = "136, 170, 224";
-  sapphire-rgb = "120, 152, 208";
+  accent-rgb   = "207, 197, 245";
+  accent2-rgb  = "181, 168, 232";
+  accent_b-rgb = "232, 201, 154";
+  error-rgb    = "224, 128, 128";
+  warning-rgb  = "212, 149, 85";
+  caution-rgb  = "212, 190, 112";
+  success-rgb  = "138, 191, 120";
+  info-rgb     = "120, 191, 176";
+  link-rgb     = "136, 170, 224";
 
   # ── Roles ─────────────────────────────────────────────────────────────────────
   roles = {
-    # Accent
-    accent        = p.lavender; # Primary accent – active borders, highlights
-    accent_dim    = p.iris;     # Dimmed accent – inactive states
-    accent_subtle = p.mauve;    # Subtle accent – UI elements
-    accent2       = p.beige;    # Secondary accent – warm
-    accent2_dim   = p.wheat;    # Dimmed secondary accent
+    accent        = p.accent;
+    accent_dim    = p.accent3;
+    accent_subtle = p.accent2;
+    accent2       = p.accent_b;
+    accent2_dim   = p.accent_b2;
 
-    # Backgrounds
-    bg       = p.base;     # Main background
-    bg_dark  = p.crust;    # Deepest background, shadows
-    bg_dim   = p.mantle;   # Dimmed background
-    surface  = p.surface0; # Inactive elements
-    surface1 = p.surface1; # Slightly elevated
-    surface2 = p.surface2; # Borders, separators
+    bg       = p.base;
+    bg_dark  = p.crust;
+    bg_dim   = p.mantle;
+    surface  = p.surface0;
+    surface1 = p.surface1;
+    surface2 = p.surface2;
 
-    # Borders
-    border          = p.lavender; # Active border
-    border_inactive = p.surface2; # Inactive border
+    border          = p.accent;
+    border_inactive = p.surface2;
 
-    # Text
-    text    = p.text;     # Primary text
-    subtext = p.subtext1; # Secondary text
-    muted   = p.overlay1; # Muted text, comments
-    subtle  = p.overlay0; # Very muted
+    text    = p.text;
+    subtext = p.subtext1;
+    muted   = p.overlay2;
+    subtle  = p.overlay0;
 
-    # Semantic
-    error   = p.red;      # Error
-    error2  = p.maroon;   # Secondary error
-    warning = p.peach;    # Warning
-    caution = p.yellow;   # Caution
-    success = p.green;    # Success
-    info    = p.teal;     # Info
-    info2   = p.sky;      # Subtle info
-    link    = p.blue;     # Links, references
-    link2   = p.sapphire; # Secondary link
+    error   = p.error;
+    error2  = p.error2;
+    warning = p.warning;
+    caution = p.caution;
+    success = p.success;
+    info    = p.info;
+    info2   = p.info2;
+    link    = p.link;
+    link2   = p.link2;
 
-    # Misc
-    shadow = p.crust; # Drop shadows
+    shadow = p.crust;
   };
 }

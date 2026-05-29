@@ -1,108 +1,84 @@
 # home/apps/yazi.nix
-# Yazi terminal file manager configuration.
-# Opened via Super+E (ghostty -e yazi) – see keybinds.nix.
-# Colors follow the Catppuccin Mocha palette defined in colors.nix.
-
 { config, pkgs, ... }:
 let
-  colors = import ../colors.nix;
+  colors = import ../colors/theme.nix;
+  r = colors.roles;
 in
 {
   programs.yazi = {
     enable           = true;
-    shellWrapperName = "y";  # Use 'y' to cd into last directory on exit
-
+    shellWrapperName = "y";
     settings = {
-      # ── Manager ───────────────────────────────────────────────────────────
       manager = {
-        layout         = [ 1 4 3 ];  # Column width ratio: parent | current | preview
+        layout         = [ 1 4 3 ];
         sort_by        = "natural";
-        sort_sensitive = false;       # Case-insensitive sorting
+        sort_sensitive = false;
         sort_reverse   = false;
-        sort_dir_first = true;        # Directories appear before files
-        show_hidden    = false;       # Toggle with . in Yazi
-        show_symlink   = true;        # Show symlink targets
+        sort_dir_first = true;
+        show_hidden    = false;
+        show_symlink   = true;
       };
-
-      # ── Preview ───────────────────────────────────────────────────────────
       preview = {
-        image_delay   = 30;           # Delay in ms before rendering image previews
-        image_filter  = "lanczos3";   # High-quality downscaling filter
+        image_delay   = 30;
+        image_filter  = "lanczos3";
         image_quality = 75;
         tab_size      = 2;
         max_width     = 600;
         max_height    = 900;
       };
-
-      # ── Openers ───────────────────────────────────────────────────────────
       opener = {
-        edit = [
-          {
-            run  = "ghostty -e nvim \"$@\"";
-            desc = "Neovim";
-          }
-        ];
-        open = [
-          {
-            run  = "xdg-open \"$@\"";
-            desc = "Open";
-          }
-        ];
+        edit = [{ run = "ghostty -e nvim \"$@\""; desc = "Neovim"; }];
+        open = [{ run = "xdg-open \"$@\"";        desc = "Open";   }];
       };
-
-      # ── File Association Rules ─────────────────────────────────────────────
       open.rules = [
-        { mime = "text/*";          use = "edit"; }  # Open text files in Neovim
-        { mime = "image/*";         use = "open"; }  # Open images with xdg-open
-        { mime = "video/*";         use = "open"; }  # Open videos with xdg-open
-        { mime = "application/pdf"; use = "open"; }  # Open PDFs with xdg-open
+        { mime = "text/*";          use = "edit"; }
+        { mime = "image/*";         use = "open"; }
+        { mime = "video/*";         use = "open"; }
+        { mime = "application/pdf"; use = "open"; }
       ];
     };
-
     theme = {
-      # ── Manager ───────────────────────────────────────────────────────────
-      manager = {
-        cwd             = { fg = "#${colors.blue}"; };
-        hovered         = { fg = "#${colors.base}";  bg = "#${colors.blue}"; };
-        preview_hovered = { underline = true; };
-        find_keyword    = { fg = "#${colors.yellow}"; bold = true; };  # Search highlight
-        find_position   = { fg = "#${colors.mauve}";  bold = true; };  # Match position
-        marker_copied   = { fg = "#${colors.green}";  bg = "#${colors.green}"; };
-        marker_cut      = { fg = "#${colors.red}";    bg = "#${colors.red}"; };
-        marker_marked   = { fg = "#${colors.mauve}";  bg = "#${colors.mauve}"; };
-        marker_selected = { fg = "#${colors.blue}";   bg = "#${colors.blue}"; };
-        tab_active      = { fg = "#${colors.base}";   bg = "#${colors.blue}"; };
-        tab_inactive    = { fg = "#${colors.text}";   bg = "#${colors.surface0}"; };
-        border_symbol   = "│";
-        border_style    = { fg = "#${colors.overlay0}"; };
+      filetype = {
+        rules = [
+          { mime = "inode/directory"; fg = "#${r.accent}"; }
+        ];
       };
-
-      # ── Status Bar ────────────────────────────────────────────────────────
+      manager = {
+        cwd             = { fg = "#${r.link}"; };
+        hovered         = { fg = "#${r.bg}";     bg = "#${r.accent}"; };
+        preview_hovered = { underline = true; };
+        find_keyword    = { fg = "#${r.caution}"; bold = true; };
+        find_position   = { fg = "#${r.accent}";  bold = true; };
+        marker_copied   = { fg = "#${r.success}"; bg = "#${r.success}"; };
+        marker_cut      = { fg = "#${r.error}";   bg = "#${r.error}"; };
+        marker_marked   = { fg = "#${r.accent}";  bg = "#${r.accent}"; };
+        marker_selected = { fg = "#${r.accent}";  bg = "#${r.accent}"; };
+        tab_active      = { fg = "#${r.bg}";      bg = "#${r.accent}"; };
+        tab_inactive    = { fg = "#${r.text}";    bg = "#${r.surface}"; };
+        border_symbol   = "│";
+        border_style    = { fg = "#${r.subtle}"; };
+      };
       status = {
         separator_open  = "";
         separator_close = "";
-        separator_style = { fg = "#${colors.surface0}"; bg = "#${colors.surface0}"; };
-        mode_normal = { fg = "#${colors.base}"; bg = "#${colors.blue}";  bold = true; };
-        mode_select = { fg = "#${colors.base}"; bg = "#${colors.green}"; bold = true; };
-        mode_unset  = { fg = "#${colors.base}"; bg = "#${colors.red}";   bold = true; };
-        progress_label  = { fg = "#${colors.text}";  bold = true; };
-        progress_normal = { fg = "#${colors.blue}";  bg = "#${colors.surface0}"; };
-        progress_error  = { fg = "#${colors.red}";   bg = "#${colors.surface0}"; };
+        separator_style = { fg = "#${r.surface}"; bg = "#${r.surface}"; };
+        mode_normal = { fg = "#${r.bg}"; bg = "#${r.accent}";  bold = true; };
+        mode_select = { fg = "#${r.bg}"; bg = "#${r.success}"; bold = true; };
+        mode_unset  = { fg = "#${r.bg}"; bg = "#${r.error}";   bold = true; };
+        progress_label  = { fg = "#${r.text}";   bold = true; };
+        progress_normal = { fg = "#${r.accent}"; bg = "#${r.surface}"; };
+        progress_error  = { fg = "#${r.error}";  bg = "#${r.surface}"; };
       };
-
-      # ── Input Dialog ──────────────────────────────────────────────────────
       input = {
-        border   = { fg = "#${colors.blue}"; };
-        title    = { fg = "#${colors.blue}"; };
-        value    = { fg = "#${colors.text}"; };
+        border   = { fg = "#${r.accent}"; };
+        title    = { fg = "#${r.accent}"; };
+        value    = { fg = "#${r.text}"; };
         selected = { reversed = true; };
       };
-
-      # ── Select Dialog ─────────────────────────────────────────────────────
       select = {
-        border   = { fg = "#${colors.blue}"; };
-        active   = { fg = "#${colors.mauve}"; };
-        inactive = { fg = "#${colors.overlay0}"; };
+        border   = { fg = "#${r.accent}"; };
+        active   = { fg = "#${r.accent}"; };
+        inactive = { fg = "#${r.subtle}"; };
       };
     };
   };

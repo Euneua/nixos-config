@@ -1,11 +1,8 @@
 # home/apps/rofi.nix
-# Rofi application launcher configuration.
-# Used as app launcher (Super+Space), window switcher (Super+Tab) and clipboard picker (Super+V).
-# Colors follow the Catppuccin Mocha palette defined in colors.nix.
-
 { config, pkgs, ... }:
 let
-  colors = import ../colors.nix;
+  colors = import ../colors/theme.nix;
+  r = colors.roles;
 in
 {
   programs.rofi = {
@@ -30,39 +27,35 @@ in
         inherit (config.lib.formats.rasi) mkLiteral;
       in
       {
-        # ── Color Variables ───────────────────────────────────────────────────
         "*" = {
-          bg      = mkLiteral "#${colors.base}";
-          bg2     = mkLiteral "#${colors.surface0}";
-          bg3     = mkLiteral "#${colors.surface1}";
-          fg      = mkLiteral "#${colors.text}";
-          blue    = mkLiteral "#${colors.blue}";
-          purple  = mkLiteral "#${colors.mauve}";
-          red     = mkLiteral "#${colors.red}";
-          muted   = mkLiteral "#${colors.overlay0}";
+          bg      = mkLiteral "#${r.bg}";
+          bg2     = mkLiteral "#${r.surface}";
+          bg3     = mkLiteral "#${r.surface1}";
+          fg      = mkLiteral "#${r.text}";
+          accent  = mkLiteral "#${r.accent}";
+          accent2 = mkLiteral "#${r.accent2}";
+          red     = mkLiteral "#${r.error}";
+          muted   = mkLiteral "#${r.muted}";
           background-color = mkLiteral "transparent";
           text-color       = mkLiteral "@fg";
-          border-color     = mkLiteral "@blue";
+          border-color     = mkLiteral "@accent";
         };
 
-        # ── Window ────────────────────────────────────────────────────────────
         "window" = {
           background-color = mkLiteral "@bg";
           border           = mkLiteral "1px";
-          border-color     = mkLiteral "@blue";
+          border-color     = mkLiteral "@accent";
           border-radius    = mkLiteral "12px";
           width            = mkLiteral "600px";
           padding          = mkLiteral "12px";
         };
 
-        # ── Layout ────────────────────────────────────────────────────────────
         "mainbox" = {
           background-color = mkLiteral "transparent";
           children         = mkLiteral "[inputbar, listview]";
           spacing          = mkLiteral "8px";
         };
 
-        # ── Input Bar ─────────────────────────────────────────────────────────
         "inputbar" = {
           background-color = mkLiteral "@bg2";
           border-radius    = mkLiteral "8px";
@@ -71,7 +64,7 @@ in
           spacing          = mkLiteral "8px";
         };
         "prompt" = {
-          text-color = mkLiteral "@blue";
+          text-color = mkLiteral "@accent";
         };
         "entry" = {
           background-color  = mkLiteral "transparent";
@@ -80,7 +73,6 @@ in
           placeholder-color = mkLiteral "@muted";
         };
 
-        # ── Results List ──────────────────────────────────────────────────────
         "listview" = {
           background-color = mkLiteral "transparent";
           lines            = 8;
@@ -96,7 +88,7 @@ in
         };
         "element selected" = {
           background-color = mkLiteral "@bg3";
-          text-color       = mkLiteral "@purple";  # Mauve highlight on selected item
+          text-color       = mkLiteral "@accent";
         };
         "element-icon" = {
           background-color = mkLiteral "transparent";

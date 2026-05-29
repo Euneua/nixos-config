@@ -33,15 +33,15 @@ let p = {
   accent_b2 = "000000"; # Dim secondary accent
 
   # ── Semantic ──────────────────────────────────────────────────────────────────
-  red      = "000000"; # Error
-  red2     = "000000"; # Secondary error
-  orange   = "000000"; # Warning
-  yellow   = "000000"; # Caution
-  green    = "000000"; # Success
-  teal     = "000000"; # Info
-  teal2    = "000000"; # Subtle info
-  blue     = "000000"; # Links, references
-  blue2    = "000000"; # Secondary link
+  error   = "000000"; # Error
+  error2  = "000000"; # Secondary error
+  warning = "000000"; # Warning
+  caution = "000000"; # Caution
+  success = "000000"; # Success
+  info    = "000000"; # Info
+  info2   = "000000"; # Subtle info
+  link    = "000000"; # Links, references
+  link2   = "000000"; # Secondary link
 
   # ── Decorative ────────────────────────────────────────────────────────────────
   extra1 = "000000";
@@ -53,20 +53,29 @@ let p = {
     crust mantle base surface0 surface1 surface2
     overlay0 overlay1 overlay2 subtext0 subtext1 text
     accent accent2 accent3 accent_b accent_b2
-    red red2 orange yellow green teal teal2 blue blue2
+    error error2 warning caution success info info2 link link2
     extra1 extra2 extra3;
 
+  # ── RGB ───────────────────────────────────────────────────────────────────────
   crust-rgb    = "0, 0, 0";
   mantle-rgb   = "0, 0, 0";
   base-rgb     = "0, 0, 0";
   surface0-rgb = "0, 0, 0";
   surface1-rgb = "0, 0, 0";
   surface2-rgb = "0, 0, 0";
+  overlay0-rgb = "0, 0, 0";
+  overlay1-rgb = "0, 0, 0";
+  overlay2-rgb = "0, 0, 0";
   text-rgb     = "0, 0, 0";
   accent-rgb   = "0, 0, 0";
-  red-rgb      = "0, 0, 0";
-  green-rgb    = "0, 0, 0";
-  blue-rgb     = "0, 0, 0";
+  accent2-rgb  = "0, 0, 0";
+  accent_b-rgb = "0, 0, 0";
+  error-rgb    = "0, 0, 0";
+  warning-rgb  = "0, 0, 0";
+  caution-rgb  = "0, 0, 0";
+  success-rgb  = "0, 0, 0";
+  info-rgb     = "0, 0, 0";
+  link-rgb     = "0, 0, 0";
 
   # ── Roles ─────────────────────────────────────────────────────────────────────
   roles = {
@@ -88,18 +97,18 @@ let p = {
 
     text    = p.text;
     subtext = p.subtext1;
-    muted   = p.overlay1;
+    muted   = p.overlay2;
     subtle  = p.overlay0;
 
-    error   = p.red;
-    error2  = p.red2;
-    warning = p.orange;
-    caution = p.yellow;
-    success = p.green;
-    info    = p.teal;
-    info2   = p.teal2;
-    link    = p.blue;
-    link2   = p.blue2;
+    error   = p.error;
+    error2  = p.error2;
+    warning = p.warning;
+    caution = p.caution;
+    success = p.success;
+    info    = p.info;
+    info2   = p.info2;
+    link    = p.link;
+    link2   = p.link2;
 
     shadow = p.crust;
   };

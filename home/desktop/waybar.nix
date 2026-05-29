@@ -1,16 +1,13 @@
 # home/desktop/waybar.nix
-# Waybar top bar configuration.
-# Left: workspaces | Center: clock | Right: network, audio, battery, notifications.
-# Colors follow the Catppuccin Mocha palette defined in colors.nix.
-
 { config, pkgs, ... }:
 let
-  colors = import ../colors.nix;
+  colors = import ../colors/theme.nix;
+  r = colors.roles;
 in
 {
   programs.waybar = {
     enable         = true;
-    systemd.enable = true;  # Start Waybar as a systemd user service
+    systemd.enable = true;
 
     settings = [{
       layer        = "top";
@@ -23,22 +20,14 @@ in
 
       modules-left   = [ "hyprland/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right  = [
-        "network"
-        "pulseaudio"
-        "battery"
-        "custom/swaync"
-      ];
+      modules-right  = [ "network" "pulseaudio" "battery" "custom/swaync" ];
 
-      # ── Workspaces ──────────────────────────────────────────────────────
       "hyprland/workspaces" = {
         format         = "{id}";
         on-click       = "activate";
         sort-by-number = true;
       };
 
-      # ── Clock ────────────────────────────────────────────────────────────
-      # Left-click: toggle date, right-click: switch calendar mode
       "clock" = {
         format         = " {:%H:%M}";
         format-alt     = " {:%d.%m.%Y %H:%M}";
@@ -49,17 +38,15 @@ in
           on-scroll      = 1;
           on-click-right = "mode";
           format = {
-            months   = "<span color='#${colors.mauve}'><b>{}</b></span>";
-            days     = "<span color='#${colors.text}'>{}</span>";
-            weeks    = "<span color='#${colors.blue}'><b>W{}</b></span>";
-            weekdays = "<span color='#${colors.blue}'><b>{}</b></span>";
-            today    = "<span color='#${colors.mauve}'><b><u>{}</u></b></span>";
+            months   = "<span color='#${r.accent}'><b>{}</b></span>";
+            days     = "<span color='#${r.text}'>{}</span>";
+            weeks    = "<span color='#${r.link}'><b>W{}</b></span>";
+            weekdays = "<span color='#${r.link}'><b>{}</b></span>";
+            today    = "<span color='#${r.accent}'><b><u>{}</u}</b></span>";
           };
         };
       };
 
-      # ── Network ──────────────────────────────────────────────────────────
-      # Click opens nm-connection-editor
       "network" = {
         format-wifi             = " {signalStrength}%";
         format-ethernet         = " {ipaddr}";
@@ -69,8 +56,6 @@ in
         on-click                = "nm-connection-editor";
       };
 
-      # ── Audio ─────────────────────────────────────────────────────────────
-      # Click toggles mute, scroll adjusts volume
       "pulseaudio" = {
         format       = "{icon} {volume}%";
         format-muted = "󰝟";
@@ -79,20 +64,14 @@ in
         scroll-step  = 5;
       };
 
-      # ── Battery ───────────────────────────────────────────────────────────
       "battery" = {
         format          = "{icon} {capacity}%";
         format-charging = "󰂄 {capacity}%";
         format-icons    = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-        states = {
-          warning  = 30;  # Yellow below 30%
-          critical = 15;  # Red below 15%
-        };
-        tooltip-format = "{timeTo}";
+        states = { warning = 30; critical = 15; };
+        tooltip-format  = "{timeTo}";
       };
 
-      # ── SwayNC Notification Bell ──────────────────────────────────────────
-      # Left-click: toggle notification center, right-click: toggle DND
       "custom/swaync" = {
         exec           = "swaync-client -swb";
         return-type    = "json";
@@ -112,12 +91,11 @@ in
         min-height: 0;
       }
 
-      /* Bar background */
       window#waybar {
-        background-color: rgba(${colors.base-rgb}, 0.90);
+        background-color: rgba(${colors."base-rgb"}, 0.90);
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        color: #${colors.text};
+        color: #${r.text};
       }
 
       .modules-left,
@@ -126,9 +104,8 @@ in
         padding: 0 8px;
       }
 
-      /* Workspace buttons */
       #workspaces button {
-        color: #${colors.overlay0};
+        color: #${r.muted};
         background: transparent;
         padding: 2px 8px;
         border-radius: 8px;
@@ -137,41 +114,38 @@ in
       }
 
       #workspaces button.active {
-        color: #${colors.mauve};
-        background: rgba(${colors.mauve-rgb}, 0.15);
+        color: #${r.accent};
+        background: rgba(${colors."accent-rgb"}, 0.15);
       }
 
       #workspaces button:hover {
-        color: #${colors.blue};
-        background: rgba(${colors.blue-rgb}, 0.15);
+        color: #${r.link};
+        background: rgba(${colors."link-rgb"}, 0.15);
       }
 
-      /* Clock */
       #clock {
-        color: #${colors.text};
+        color: #${r.text};
         font-weight: bold;
         padding: 0 8px;
       }
 
-      /* Tooltip */
       tooltip {
-        background-color: #${colors.base};
-        border: 1px solid rgba(${colors.blue-rgb}, 0.4);
+        background-color: #${r.bg};
+        border: 1px solid rgba(${colors."accent-rgb"}, 0.4);
         border-radius: 10px;
-        color: #${colors.text};
+        color: #${r.text};
       }
 
       tooltip label {
-        color: #${colors.text};
+        color: #${r.text};
       }
 
-      /* Right-side modules */
       #network,
       #pulseaudio,
       #battery,
       #custom-swaync {
-        color: #${colors.text};
-        background: rgba(${colors.surface0-rgb}, 0.6);
+        color: #${r.text};
+        background: rgba(${colors."surface0-rgb"}, 0.6);
         border-radius: 8px;
         padding: 2px 10px;
         margin: 4px 2px;
@@ -181,14 +155,13 @@ in
       #pulseaudio:hover,
       #battery:hover,
       #custom-swaync:hover {
-        background: rgba(${colors.blue-rgb}, 0.2);
-        color: #${colors.blue};
+        background: rgba(${colors."accent-rgb"}, 0.2);
+        color: #${r.accent};
       }
 
-      /* Battery state colors */
-      #battery.warning  { color: #${colors.yellow}; }
-      #battery.critical { color: #${colors.red};    }
-      #battery.charging { color: #${colors.green};  }
+      #battery.warning  { color: #${r.caution}; }
+      #battery.critical { color: #${r.error};   }
+      #battery.charging { color: #${r.success};  }
     '';
   };
 }
