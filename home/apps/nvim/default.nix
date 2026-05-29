@@ -72,9 +72,9 @@ let
           rustfmt
           stylua
           wl-clipboard
-          nodePackages.typescript-language-server
-          nodePackages.svelte-language-server
-          nodePackages.prettier
+          typescript-language-server
+          svelte-language-server
+          prettier
           nodejs
         ]
       )

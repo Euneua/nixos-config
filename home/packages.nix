@@ -25,6 +25,8 @@
 
     # ── Media & Audio ────────────────────────────────────────────────────────
     playerctl               # Media player control (play, pause, next, previous)
+    spotify-player
+    spotify
 
     # ── Brightness ───────────────────────────────────────────────────────────
     brightnessctl           # Screen brightness control
