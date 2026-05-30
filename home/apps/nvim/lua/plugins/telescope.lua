@@ -8,7 +8,7 @@ local actions   = require("telescope.actions")
 telescope.setup({
   defaults = {
     sorting_strategy = "ascending",
-    layout_config    = {
+    layout_config = {
       prompt_position = "top",
       width           = 0.85,
       height          = 0.85,
@@ -16,17 +16,17 @@ telescope.setup({
     },
     mappings = {
       i = {
-        ["<C-k>"]    = actions.move_selection_previous,
-        ["<C-j>"]    = actions.move_selection_next,
-        ["<C-q>"]    = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<Esc>"]    = actions.close,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<Esc>"] = actions.close,
       },
     },
     file_ignore_patterns = { "%.git/", "node_modules/", "target/" },
   },
   pickers = {
     find_files = {
-      hidden = true,  -- Show dotfiles
+      hidden = true,
     },
   },
 })

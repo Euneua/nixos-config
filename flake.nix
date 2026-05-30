@@ -15,6 +15,9 @@
     # ── Hyprland ──────────────────────────────────────────────────────────
     hyprland.url = "github:hyprwm/hyprland";
 
+    # ── Awww ──────────────────────────────────────────────────────────────
+    awww.url = "git+https://codeberg.org/LGFae/awww";
+
     # ── Firefox Extensions ────────────────────────────────────────────────
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";

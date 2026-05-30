@@ -16,7 +16,7 @@ require("blink.cmp").setup({
 
   appearance = {
     use_nvim_cmp_as_default = false,
-    nerd_font_variant        = "mono",
+    nerd_font_variant       = "mono",
   },
 
   sources = {
@@ -29,20 +29,20 @@ require("blink.cmp").setup({
 
   completion = {
     documentation = {
-      auto_show       = true,   -- Automatically show docs popup
+      auto_show          = true,
       auto_show_delay_ms = 200,
     },
     ghost_text = {
-      enabled = true,           -- Show completion inline as ghost text
+      enabled = true,
     },
     menu = {
       draw = {
-        treesitter = { "lsp" }, -- Treesitter highlighting in completion menu
+        treesitter = { "lsp" },
       },
     },
   },
 
   signature = {
-    enabled = true,  -- Show function signature while typing
+    enabled = true,
   },
 })

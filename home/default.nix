@@ -17,6 +17,7 @@
     ./desktop/hypr/hyprlock.nix  # Lock screen
     ./desktop/waybar.nix       # Status bar
     ./desktop/swaync.nix       # Notification daemon
+    ./desktop/wallpaper.nix
 
     # ── Applications ────────────────────────────────────────────────────────
     ./apps/zsh.nix     # Zsh shell with Starship prompt

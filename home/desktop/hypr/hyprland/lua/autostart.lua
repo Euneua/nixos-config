@@ -5,10 +5,6 @@ hl.on("hyprland.start", function()
   -- ── System ────────────────────────────────────────────────────────────────
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
 
-  -- ── Wallpaper ─────────────────────────────────────────────────────────────
-  hl.exec_cmd("swww-daemon")
-  hl.exec_cmd("swww img ~/Pictures/wallpapers/wallpaper.jpg --transition-type fade --transition-duration 1")
-
   -- ── Notifications ─────────────────────────────────────────────────────────
   hl.exec_cmd("swaync")
 

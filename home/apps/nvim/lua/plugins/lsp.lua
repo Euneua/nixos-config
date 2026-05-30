@@ -1,6 +1,25 @@
 -- home/apps/nvim/lua/plugins/lsp.lua
--- LSP configuration: nixd, pyright, rust-analyzer, lua_ls, taplo.
+-- LSP configuration: nixd, pyright, rust-analyzer, lua_ls, taplo, ts_ls, svelte.
 -- gd: definition | gr: references | K: hover | <leader>ca: code action | <leader>rn: rename
+
+-- ── Diagnostic display ────────────────────────────────────────────────────────
+vim.diagnostic.config({
+  virtual_text = {
+    prefix  = "●",
+    spacing = 4,
+    source  = "if_many",
+  },
+  float = {
+    border = "rounded",
+    source = true,
+    header = "",
+    prefix = "",
+  },
+  signs            = true,
+  underline        = true,
+  update_in_insert = false,
+  severity_sort    = true,
+})
 
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
@@ -19,8 +38,8 @@ vim.lsp.config("rust_analyzer", {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
-      checkOnSave    = { command = "clippy" },  -- Use clippy instead of check
-      inlayHints     = { enable = true },       -- Show type hints inline
+      checkOnSave = { command = "clippy" },
+      inlayHints  = { enable = true },
     },
   },
 })
@@ -30,12 +49,12 @@ vim.lsp.config("lua_ls", {
   capabilities = capabilities,
   settings = {
     Lua = {
-      runtime  = { version = "LuaJIT" },   -- Neovim uses LuaJIT
+      runtime  = { version = "LuaJIT" },
       workspace = {
         checkThirdParty = false,
-        library = vim.api.nvim_get_runtime_file("", true),  -- Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
       },
-      diagnostics = { globals = { "vim" } },  -- Don't warn about vim global
+      diagnostics = { globals = { "vim" } },
       telemetry   = { enable = false },
     },
   },

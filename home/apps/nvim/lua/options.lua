@@ -16,6 +16,7 @@ opt.tabstop    = 2
 opt.shiftwidth = 2
 opt.expandtab  = true
 opt.autoindent = true
+opt.breakindent = true
 
 -- ── Search ────────────────────────────────────────────────────────────────────
 opt.ignorecase = true
@@ -25,12 +26,21 @@ opt.smartcase  = true
 opt.termguicolors = true
 opt.cursorline    = true
 opt.signcolumn    = "yes"
+opt.pumheight     = 10
+
+-- ── Conceal (required for render-markdown and obsidian) ───────────────────────
+opt.conceallevel  = 2
+opt.concealcursor = "nc"
 
 -- ── Layout ────────────────────────────────────────────────────────────────────
 opt.wrap       = false
 opt.scrolloff  = 8
 opt.splitbelow = true
 opt.splitright = true
+
+-- ── Performance ───────────────────────────────────────────────────────────────
+opt.updatetime  = 250
+opt.timeoutlen  = 300
 
 -- ── Persistence ───────────────────────────────────────────────────────────────
 opt.undofile = true

@@ -2,12 +2,12 @@
 # User packages and basic program stubs.
 # Application-specific configuration lives in the respective module files.
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
     # ── Wayland / Desktop ────────────────────────────────────────────────────
     swaynotificationcenter  # Notification daemon (config in desktop/swaync.nix)
-    swww                    # Wallpaper daemon
+    inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
     wl-clipboard            # Wayland clipboard utilities (wl-copy, wl-paste)
     cliphist                # Clipboard history manager (accessible via Super+V)
 
@@ -58,6 +58,7 @@
     fastfetch               # System info
     bat                     # Better cat with syntax highlighting
     tree                    # Directory tree viewer
+    imagemagick             # Picture converter
 
     # ── Viewer ───────────────────────────────────────────────────────────────
     zathura                 # Minimal PDF viewer with Vim keybindings

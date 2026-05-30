@@ -8,45 +8,76 @@
 
 let p = {
   # ── Base ──────────────────────────────────────────────────────────────────────
-  crust    = "000000"; # Deepest background, shadows
-  mantle   = "000000"; # Dimmed background
-  base     = "000000"; # Main background
-  surface0 = "000000"; # Inactive elements
-  surface1 = "000000"; # Slightly elevated
-  surface2 = "000000"; # Borders, separators
+  crust    = "000000"; # deepest background, shadows
+  mantle   = "000000"; # dimmed background
+  base     = "000000"; # main background
+  surface0 = "000000"; # inactive elements
+  surface1 = "000000"; # slightly elevated
+  surface2 = "000000"; # borders, separators
 
   # ── Text ──────────────────────────────────────────────────────────────────────
-  overlay0 = "000000"; # Very muted
-  overlay1 = "000000"; # Muted
-  overlay2 = "000000"; # Dimmed
-  subtext0 = "000000"; # Secondary text
-  subtext1 = "000000"; # Slightly prominent secondary
-  text     = "000000"; # Primary text
+  overlay0 = "000000"; # very muted
+  overlay1 = "000000"; # muted
+  overlay2 = "000000"; # dimmed
+  subtext0 = "000000"; # secondary text
+  subtext1 = "000000"; # slightly prominent secondary
+  text     = "000000"; # primary text
 
   # ── Primary Accent ────────────────────────────────────────────────────────────
-  accent   = "000000"; # Main accent – active borders, highlights
-  accent2  = "000000"; # Mid accent – UI elements
-  accent3  = "000000"; # Dim accent – inactive states
+  accent   = "000000"; # main accent – active borders, highlights
+  accent2  = "000000"; # mid accent – UI elements
+  accent3  = "000000"; # dim accent – inactive states
 
   # ── Secondary Accent ──────────────────────────────────────────────────────────
-  accent_b  = "000000"; # Secondary accent
-  accent_b2 = "000000"; # Dim secondary accent
+  accent_b  = "000000"; # secondary accent
+  accent_b2 = "000000"; # dim secondary accent
 
   # ── Semantic ──────────────────────────────────────────────────────────────────
-  error   = "000000"; # Error
-  error2  = "000000"; # Secondary error
-  warning = "000000"; # Warning
-  caution = "000000"; # Caution
-  success = "000000"; # Success
-  info    = "000000"; # Info
-  info2   = "000000"; # Subtle info
-  link    = "000000"; # Links, references
-  link2   = "000000"; # Secondary link
+  error   = "000000"; # error
+  error2  = "000000"; # secondary error
+  warning = "000000"; # warning
+  caution = "000000"; # caution
+  success = "000000"; # success
+  info    = "000000"; # info
+  info2   = "000000"; # subtle info
+  link    = "000000"; # links, references
+  link2   = "000000"; # secondary link
 
   # ── Decorative ────────────────────────────────────────────────────────────────
   extra1 = "000000";
   extra2 = "000000";
   extra3 = "000000";
+
+  # ── Syntax ────────────────────────────────────────────────────────────────────
+  syn_keyword     = "000000"; # if, for, return, fn, let ...
+  syn_func        = "000000"; # function definitions
+  syn_func_call   = "000000"; # function calls
+  syn_type        = "000000"; # types, structs, classes
+  syn_string      = "000000"; # strings, chars
+  syn_number      = "000000"; # numbers, floats, booleans
+  syn_operator    = "000000"; # + - * / = ...
+  syn_punctuation = "000000"; # () {} [] , ; .
+  syn_comment     = "000000"; # comments
+  syn_constant    = "000000"; # constants, enums
+  syn_attribute   = "000000"; # decorators, annotations
+  syn_namespace   = "000000"; # modules, namespaces
+
+  # ── Markdown ──────────────────────────────────────────────────────────────────
+  syn_md_h1          = "000000"; # heading 1
+  syn_md_h2          = "000000"; # heading 2
+  syn_md_h3          = "000000"; # heading 3
+  syn_md_h4          = "000000"; # heading 4
+  syn_md_code        = "000000"; # inline code foreground
+  syn_md_code_bg     = "000000"; # inline code background
+  syn_md_quote       = "000000"; # blockquotes
+  syn_md_list        = "000000"; # list bullets
+  syn_md_bold        = "000000"; # **bold**
+  syn_md_italic      = "000000"; # *italic*
+  syn_md_link        = "000000"; # [text](url) – label
+  syn_md_url         = "000000"; # [text](url) – url
+  syn_md_hr          = "000000"; # horizontal rule
+  syn_md_checkbox_on = "000000"; # - [x] checked
+  syn_md_checkbox_off= "000000"; # - [ ] unchecked
 }; in
 {
   inherit (p)
@@ -54,7 +85,14 @@ let p = {
     overlay0 overlay1 overlay2 subtext0 subtext1 text
     accent accent2 accent3 accent_b accent_b2
     error error2 warning caution success info info2 link link2
-    extra1 extra2 extra3;
+    extra1 extra2 extra3
+    syn_keyword syn_func syn_func_call syn_type syn_string
+    syn_number syn_operator syn_punctuation syn_comment
+    syn_constant syn_attribute syn_namespace
+    syn_md_h1 syn_md_h2 syn_md_h3 syn_md_h4
+    syn_md_code syn_md_code_bg syn_md_quote syn_md_list
+    syn_md_bold syn_md_italic syn_md_link syn_md_url
+    syn_md_hr syn_md_checkbox_on syn_md_checkbox_off;
 
   # ── RGB ───────────────────────────────────────────────────────────────────────
   crust-rgb    = "0, 0, 0";
@@ -111,5 +149,36 @@ let p = {
     link2   = p.link2;
 
     shadow = p.crust;
+
+    # ── Syntax ──────────────────────────────────────────────────────────────────
+    syn_keyword     = p.syn_keyword;
+    syn_func        = p.syn_func;
+    syn_func_call   = p.syn_func_call;
+    syn_type        = p.syn_type;
+    syn_string      = p.syn_string;
+    syn_number      = p.syn_number;
+    syn_operator    = p.syn_operator;
+    syn_punctuation = p.syn_punctuation;
+    syn_comment     = p.syn_comment;
+    syn_constant    = p.syn_constant;
+    syn_attribute   = p.syn_attribute;
+    syn_namespace   = p.syn_namespace;
+
+    # ── Markdown ────────────────────────────────────────────────────────────────
+    syn_md_h1          = p.syn_md_h1;
+    syn_md_h2          = p.syn_md_h2;
+    syn_md_h3          = p.syn_md_h3;
+    syn_md_h4          = p.syn_md_h4;
+    syn_md_code        = p.syn_md_code;
+    syn_md_code_bg     = p.syn_md_code_bg;
+    syn_md_quote       = p.syn_md_quote;
+    syn_md_list        = p.syn_md_list;
+    syn_md_bold        = p.syn_md_bold;
+    syn_md_italic      = p.syn_md_italic;
+    syn_md_link        = p.syn_md_link;
+    syn_md_url         = p.syn_md_url;
+    syn_md_hr          = p.syn_md_hr;
+    syn_md_checkbox_on = p.syn_md_checkbox_on;
+    syn_md_checkbox_off= p.syn_md_checkbox_off;
   };
 }

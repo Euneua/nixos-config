@@ -1,6 +1,7 @@
 -- home/apps/nvim/lua/init.lua
 -- Entry point – loaded at runtime from ~/.config/nvim/init.lua
 -- Edit any file here and changes take effect immediately without rebuild.
+-- Exception: default.nix changes (plugins, theme) require nixos-rebuild.
 
 local config = vim.fn.stdpath("config")
 
@@ -13,3 +14,6 @@ dofile(config .. "/plugins/telescope.lua")
 dofile(config .. "/plugins/git.lua")
 dofile(config .. "/plugins/lsp.lua")
 dofile(config .. "/plugins/cmp.lua")
+dofile(config .. "/plugins/trouble.lua")
+dofile(config .. "/plugins/obsidian.lua")
+dofile(config .. "/plugins/render-markdown.lua")

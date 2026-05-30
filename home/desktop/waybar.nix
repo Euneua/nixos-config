@@ -119,8 +119,8 @@ in
       }
 
       #workspaces button:hover {
-        color: #${r.link};
-        background: rgba(${colors."link-rgb"}, 0.15);
+        color: #${r.accent_subtle};
+        background: rgba(${colors."accent2-rgb"}, 0.15);
       }
 
       #clock {
