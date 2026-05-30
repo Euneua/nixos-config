@@ -19,17 +19,16 @@ sunset  = s['sunset']
 noon    = s['noon']
 now     = datetime.now(timezone.utc).astimezone()
 
-# Phasengrenzen – weich und überlappend
-midnight_end = sunrise - timedelta(hours=2, minutes=30)
-predawn_end  = sunrise - timedelta(hours=1, minutes=15)
-dawn_end     = sunrise - timedelta(minutes=15)
-sunrise_end  = sunrise + timedelta(hours=1, minutes=30)
-morning_end  = noon    - timedelta(minutes=30)
-day_end      = sunset  - timedelta(hours=1, minutes=30)
-dusk_end     = sunset  + timedelta(minutes=30)
-evening_end  = sunset  + timedelta(hours=1, minutes=30)
-night_end    = sunset  + timedelta(hours=3)
-latenight_end= sunset  + timedelta(hours=5)
+midnight_end  = sunrise - timedelta(hours=2, minutes=30)
+predawn_end   = sunrise - timedelta(hours=1, minutes=15)
+dawn_end      = sunrise - timedelta(minutes=15)
+sunrise_end   = sunrise + timedelta(hours=1, minutes=30)
+morning_end   = noon    - timedelta(minutes=30)
+day_end       = sunset  - timedelta(hours=1, minutes=30)
+dusk_end      = sunset  + timedelta(minutes=30)
+evening_end   = sunset  + timedelta(hours=1, minutes=30)
+night_end     = sunset  + timedelta(hours=3)
+latenight_end = sunset  + timedelta(hours=5)
 
 if now < midnight_end:
     phase = 'midnight'
@@ -88,13 +87,14 @@ in
       Type      = "oneshot";
       ExecStart = "${wallpaperScript}/bin/wallpaper-switch";
     };
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   # ── Wallpaper Switch Timer ────────────────────────────────────────────────
   systemd.user.timers.wallpaper-switch = {
     Unit.Description = "Wallpaper-Wechsel alle 30 Minuten";
     Timer = {
-      OnBootSec       = "1min";
+      OnBootSec       = "5sec";
       OnUnitActiveSec = "30min";
       Unit            = "wallpaper-switch.service";
     };
