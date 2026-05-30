@@ -26,6 +26,7 @@
     ./apps/yazi.nix    # Terminal file manager
     ./apps/nvim        # Neovim (imports all nvim sub-modules)
     ./apps/firefox.nix # Browser
+    ./apps/zen.nix     # Browser
   ];
 
   # ── User ──────────────────────────────────────────────────────────────────
